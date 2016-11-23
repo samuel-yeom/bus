@@ -111,9 +111,9 @@ def get_date():
 if __name__ == '__main__':
     while True:
         filedate = get_date()
-        filename = 'buses-{}.csv'.format(filedate)
+        filepath = 'data/buses-{}.csv'.format(filedate)
         
-        with open(filename, 'a') as f:
+        with open(filepath, 'a') as f:
             while filedate == get_date():
                 update_buses(f)
                 time.sleep(10)
