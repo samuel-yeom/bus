@@ -17,7 +17,7 @@ all_buses = {}
 '''Gets live bus data from Pittsburgh Port Authority website. If successful,
 returns a tuple (text, timestamp), where text is the live bus data as an XML
 string, and timestamp is the current Unix time. If the web connection fails,
-returns None.'''
+returns (None, timestamp).'''
 def get_xml_data():
     params['key'] = repr(random()) #use new random number to avoid caching
     try:
