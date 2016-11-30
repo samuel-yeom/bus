@@ -23,9 +23,8 @@ def get_xml_data():
     try:
         r = requests.get(url, params)
         r.raise_for_status()
-    
     except requests.RequestException: #if there was an error getting the data
-        return None
+        return (None, int(time.time()))
     
     return (r.text, int(time.time()))
 
