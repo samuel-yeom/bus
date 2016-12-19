@@ -21,7 +21,7 @@ returns (None, timestamp).'''
 def get_xml_data():
     params['key'] = repr(random()) #use new random number to avoid caching
     try:
-        r = requests.get(url, params)
+        r = requests.get(url, params, timeout=10)
         r.raise_for_status()
     except requests.RequestException: #if there was an error getting the data
         return (None, int(time.time()))
@@ -72,7 +72,7 @@ bus to the currently open file f.
 def update_buses(f):
     text, timestamp = get_xml_data()
     recent_buses = parse_xml_bus_data(text, timestamp)
-    time_str = time.strftime('%H:%M:%S', time.localtime(timestamp))
+    time_str = time.strftime('%Y%m%d %H:%M:%S', time.localtime(timestamp))
     
     if recent_buses is None: #if web connection or parser failed
         if text is None:
