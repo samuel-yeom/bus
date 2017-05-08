@@ -6,7 +6,11 @@ import os
 from warnings import warn
 
 url = 'http://realtime.portauthority.org/bustime/map/getStopPredictions.jsp'
-params = {'stop': '7117', 'route': '61A,61B,61C,61D', 'key': repr(random())}
+pab = 'Port Authority Bus:'
+routes = ['61A', '61B', '61C', '61D', '67', '69']
+params = {'stop': pab + '7117',
+          'route': ','.join([pab + route for route in routes]),
+          'key': repr(random())}
 
 '''all_buses is a dictionary of buses that we are currently tracking.
 Keys are vehicle numbers, and values are tuples (route, eta, last_seen), where
