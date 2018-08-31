@@ -42,7 +42,7 @@ def parse_xml_bus_data(text, timestamp):
     
     try:
         root = ET.fromstring(text)
-    except TypeError, ET.ParseError: #text is None or parser fails
+    except (TypeError, ET.ParseError): #text is None or parser fails
         return None
     
     for bus_node in root:
@@ -89,7 +89,7 @@ def update_buses(f):
             all_buses[bus] = recent_buses[bus]
     
     #Deal with buses that have not been updated for a while
-    for bus in all_buses.keys():
+    for bus in list(all_buses):
         vnum = bus #vehicle number
         route, eta, last_seen = all_buses[bus] #last_seen is a Unix time
         if timestamp - last_seen > 300: #if last seen more than 5 minutes ago
